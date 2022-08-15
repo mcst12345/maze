@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I ",
+    "IiI",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:stonebrick",
+      "data": 0
+    },
+    "i": {
+      "item": "minecraft:flint_and_steel"
+    }
+  },
+  "result": {
+    "item": "maze:portal_creator",
+    "data": 0
+  }
+}

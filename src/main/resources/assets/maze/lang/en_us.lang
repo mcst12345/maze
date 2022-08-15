@@ -1,0 +1,7 @@
+#Block
+tile.maze_block.name=Maze Block
+tile.maze_portal.name=Maze World Portal
+#Item
+item.portal_creator.name=Portal Creator
+#Tab
+itemGroup.maze=Maze

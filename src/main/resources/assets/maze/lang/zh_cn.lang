@@ -1,0 +1,7 @@
+#方块
+tile.maze_block.name=迷宫方块
+tile.maze_portal.name=迷宫世界传送门
+#物品
+item.portal_creator.name=传送门创建器
+#创造物品栏
+itemGroup.maze=迷宫
