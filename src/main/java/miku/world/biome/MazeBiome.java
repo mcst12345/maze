@@ -9,10 +9,10 @@ public class MazeBiome extends Biome {
         spawnableMonsterList.clear();
         spawnableWaterCreatureList.clear();
         spawnableCreatureList.clear();
-        spawnableMonsterList.add(new SpawnListEntry(EntitySlime.class, 10, 1, 5));
-        spawnableMonsterList.add(new SpawnListEntry(EntityZombie.class, 10, 1, 20));
-        spawnableMonsterList.add(new SpawnListEntry(EntitySkeleton.class, 10, 1, 20));
-        spawnableMonsterList.add(new SpawnListEntry(EntityWitherSkeleton.class, 10, 1, 20));
-        spawnableMonsterList.add(new SpawnListEntry(EntityCreeper.class, 10, 1, 3));
+        spawnableCreatureList.add(new SpawnListEntry(EntitySlime.class, 10, 1, 5));
+        spawnableCreatureList.add(new SpawnListEntry(EntityZombie.class, 10, 1, 20));
+        spawnableCreatureList.add(new SpawnListEntry(EntitySkeleton.class, 10, 1, 20));
+        spawnableCreatureList.add(new SpawnListEntry(EntityWitherSkeleton.class, 10, 1, 20));
+        spawnableCreatureList.add(new SpawnListEntry(EntityCreeper.class, 10, 1, 3));
     }
 }

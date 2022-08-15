@@ -2,8 +2,11 @@ package miku.world;
 
 import miku.block.BlockLoader;
 import miku.utils.Maze;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -14,13 +17,17 @@ import net.minecraft.world.gen.IChunkGenerator;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Random;
 
 public class MazeChunkGenerator implements IChunkGenerator {
     public MazeChunkGenerator(World world){
         this.world=world;
+        this.rand = new Random(world.getSeed());
     }
 
     private final World world;
+
+    private final Random rand;
 
     @Override
     @Nonnull
@@ -36,7 +43,61 @@ public class MazeChunkGenerator implements IChunkGenerator {
 
     @Override
     public void populate(int x, int z) {
+        int i = x * 16;
+        int j = z * 16;
+        performWorldGenSpawning(this.world,  MazeWorld.MazeBiome, i + 8, j + 8, 16, 16, this.rand);
+    }
 
+    public static void performWorldGenSpawning(World worldIn, Biome biomeIn, int centerX, int centerZ, int diameterX, int diameterZ, Random randomIn)
+    {
+        List<Biome.SpawnListEntry> list = biomeIn.getSpawnableList(EnumCreatureType.CREATURE);
+
+        if (!list.isEmpty())
+        {
+            while (randomIn.nextFloat() < biomeIn.getSpawningChance())
+            {
+                Biome.SpawnListEntry biome$spawnlistentry = WeightedRandom.getRandomItem(worldIn.rand, list);
+                int i = biome$spawnlistentry.minGroupCount + randomIn.nextInt(1 + biome$spawnlistentry.maxGroupCount - biome$spawnlistentry.minGroupCount);
+                IEntityLivingData ientitylivingdata = null;
+                int j = centerX + randomIn.nextInt(diameterX);
+                int k = centerZ + randomIn.nextInt(diameterZ);
+                int l = j;
+                int i1 = k;
+
+                for (int j1 = 0; j1 < i; ++j1)
+                {
+                    boolean flag = false;
+
+                    for (int k1 = 0; !flag && k1 < 4; ++k1)
+                    {
+                        BlockPos blockpos = worldIn.getTopSolidOrLiquidBlock(new BlockPos(j, 0, k));
+                        EntityLiving entityliving;
+                        try
+                        {
+                            entityliving = biome$spawnlistentry.newInstance(worldIn);
+                        }
+                        catch (Exception exception)
+                        {
+                            exception.printStackTrace();
+                            continue;
+                        }
+
+                        if (net.minecraftforge.event.ForgeEventFactory.canEntitySpawn(entityliving, worldIn, j + 0.5f, (float) blockpos.getY(), k +0.5f, false) == net.minecraftforge.fml.common.eventhandler.Event.Result.DENY) continue;
+                        entityliving.setLocationAndAngles((float)j + 0.5F, blockpos.getY(), (float)k + 0.5F, randomIn.nextFloat() * 360.0F, 0.0F);
+                        worldIn.spawnEntity(entityliving);
+                        ientitylivingdata = entityliving.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(entityliving)), ientitylivingdata);
+                        flag = true;
+
+                        j += randomIn.nextInt(5) - randomIn.nextInt(5);
+
+                        for (k += randomIn.nextInt(5) - randomIn.nextInt(5); j < centerX || j >= centerX + diameterX || k < centerZ || k >= centerZ + diameterX; k = i1 + randomIn.nextInt(5) - randomIn.nextInt(5))
+                        {
+                            j = l + randomIn.nextInt(5) - randomIn.nextInt(5);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -72,7 +133,7 @@ public class MazeChunkGenerator implements IChunkGenerator {
         {
             for (int k = 0; k < 16; ++k)
             {
-                chunkPrimer.setBlockState(j, 0, k, Blocks.AIR.getDefaultState());
+                chunkPrimer.setBlockState(j, 0, k, Blocks.BEDROCK.getDefaultState());
             }
         }
         for (int j = 0; j < 16; ++j)
@@ -80,6 +141,13 @@ public class MazeChunkGenerator implements IChunkGenerator {
             for (int k = 0; k < 16; ++k)
             {
                 chunkPrimer.setBlockState(j, 1, k, BlockLoader.MazeBlock.getDefaultState());
+            }
+        }
+        for (int j = 0; j < 16; ++j)
+        {
+            for (int k = 0; k < 16; ++k)
+            {
+                chunkPrimer.setBlockState(j, 256, k, Blocks.BARRIER.getDefaultState());
             }
         }
         Maze Maze = new Maze();
