@@ -5,3 +5,5 @@ tile.maze_portal.name=Maze World Portal
 item.portal_creator.name=Portal Creator
 #Tab
 itemGroup.maze=Maze
+#Entity
+entity.maze_golem.name=Maze Golem

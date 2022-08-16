@@ -5,3 +5,5 @@ tile.maze_portal.name=迷宫世界传送门
 item.portal_creator.name=传送门创建器
 #创造物品栏
 itemGroup.maze=迷宫
+#实体
+entity.maze_golem.name=迷宫傀儡

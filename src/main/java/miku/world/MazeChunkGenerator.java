@@ -2,6 +2,7 @@ package miku.world;
 
 import miku.block.BlockLoader;
 import miku.utils.Maze;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.IEntityLivingData;
@@ -70,7 +71,7 @@ public class MazeChunkGenerator implements IChunkGenerator {
 
                     for (int k1 = 0; !flag && k1 < 4; ++k1)
                     {
-                        BlockPos blockpos = worldIn.getTopSolidOrLiquidBlock(new BlockPos(j, 0, k));
+                        BlockPos blockpos = getTopSolidOrLiquidBlock(new BlockPos(j, 0, k),worldIn);
                         EntityLiving entityliving;
                         try
                         {
@@ -98,6 +99,25 @@ public class MazeChunkGenerator implements IChunkGenerator {
                 }
             }
         }
+    }
+
+    public static BlockPos getTopSolidOrLiquidBlock(BlockPos pos,World world){
+        Chunk chunk = world.getChunk(pos);
+        BlockPos blockpos;
+        BlockPos blockpos1;
+
+        for (blockpos = new BlockPos(pos.getX(), chunk.getTopFilledSegment() + 16, pos.getZ()); blockpos.getY() >= 0; blockpos = blockpos1)
+        {
+            blockpos1 = blockpos.down();
+            IBlockState state = chunk.getBlockState(blockpos1);
+
+            if (state.getBlock() == BlockLoader.MazeBlock)
+            {
+                break;
+            }
+        }
+
+        return blockpos;
     }
 
     @Override
@@ -147,7 +167,7 @@ public class MazeChunkGenerator implements IChunkGenerator {
         {
             for (int k = 0; k < 16; ++k)
             {
-                chunkPrimer.setBlockState(j, 256, k, Blocks.BARRIER.getDefaultState());
+                chunkPrimer.setBlockState(j, 200, k, Blocks.BARRIER.getDefaultState());
             }
         }
         Maze Maze = new Maze();
