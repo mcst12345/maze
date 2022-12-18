@@ -1,5 +1,6 @@
 package miku.entity;
 
+import miku.lib.api.ProtectedEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,7 +14,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class MazeGolem extends EntityGolem {
+public class MazeGolem extends EntityGolem implements ProtectedEntity {
     public MazeGolem(World worldIn) {
         super(worldIn);
         super.setSize(0.7F, 3.0F);
