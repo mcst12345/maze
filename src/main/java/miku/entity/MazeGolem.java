@@ -15,6 +15,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class MazeGolem extends EntityGolem implements ProtectedEntity {
+    protected int health = 300;
+
     public MazeGolem(World worldIn) {
         super(worldIn);
         super.setSize(0.7F, 3.0F);
@@ -33,7 +35,6 @@ public class MazeGolem extends EntityGolem implements ProtectedEntity {
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(300.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(1.0D);
         this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(10.0D);
     }
@@ -87,5 +88,30 @@ public class MazeGolem extends EntityGolem implements ProtectedEntity {
     @Override
     protected int getExperiencePoints(@Nullable EntityPlayer player){
         return 10000;
+    }
+
+    @Override
+    public boolean CanBeKilled() {
+        return true;
+    }
+
+    @Override
+    public boolean DEAD() {
+        return health<=0;
+    }
+
+    @Override
+    public void SetHealth(int i) {
+        health=i;
+    }
+
+    @Override
+    public int GetHealth() {
+        return health;
+    }
+
+    @Override
+    public void Hurt(int i) {
+        health -= i;
     }
 }
