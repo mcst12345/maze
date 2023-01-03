@@ -24,7 +24,7 @@ public class Maze
 
     boolean[][] visit; //用来标记某一格是否被访问过
 
-    Node start = new Node(0,0); //开始节点
+    Node start = new Node(0, 0); //开始节点
 
     Node exit = new Node(len - 1, wid - 1); //出口，其实现在也没什么用，因为没有交互只是生成了一个迷宫而已
 
@@ -48,13 +48,11 @@ public class Maze
 
      */
 
-    class Node
+    static class Node
 
     {
 
         int x,y;
-
-        public Node(){}
 
         public Node(int x, int y)
 
@@ -109,62 +107,6 @@ public class Maze
         maze[start.x][start.y] = blank;
 
         cur = start; //将当前格标记为开始格
-
-    }
-
-    /**
-
-     * 打印结果
-
-     */
-
-    void printMaze()
-
-    {
-
-        for(int i = 0; i < len; i++)
-
-        {
-
-            for(int j = 0; j < wid; j++)
-
-            {
-
-                System.out.print(maze[i][j] + " ");
-
-// if(maze[i][j] == '○')
-
-// {
-
-// System.err.print(maze[i][j] + " ");
-
-// }
-
-// else
-
-// {
-
-// System.out.print(maze[i][j] + " ");
-
-// }
-
-// try {
-
-// Thread.sleep(100);
-
-// } catch (InterruptedException e) {
-
-// e.printStackTrace();
-
-// }
-
-            }
-
-            System.out.println();
-
-        }
-
-        System.out.println("==========================================");
 
     }
 
@@ -276,21 +218,17 @@ public class Maze
 
         List list = new ArrayList();
 
-        for(int i = 0; i < adj.length; i++)
+        for (int[] ints : adj) {
 
-        {
+            int x = node.x + ints[0];
 
-            int x = node.x + adj[i][0];
+            int y = node.y + ints[1];
 
-            int y = node.y + adj[i][1];
+            if (x >= 0 && x < len && y >= 0 && y < wid) {
 
-            if( x >= 0 && x < len && y >= 0 && y < wid)
+                if (!visit[x][y])
 
-            {
-
-                if(!visit[x][y])
-
-                    list.add(new Node(x,y));
+                    list.add(new Node(x, y));
 
             }
 

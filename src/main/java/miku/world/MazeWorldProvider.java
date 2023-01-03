@@ -135,5 +135,8 @@ public class MazeWorldProvider extends WorldProvider {
         return 100;
     }
 
-
+    @Override
+    public boolean isDaytime() {
+        return false;
+    }
 }

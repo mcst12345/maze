@@ -14,6 +14,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.event.ForgeEventFactory;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -83,7 +84,7 @@ public class MazeChunkGenerator implements IChunkGenerator {
                             continue;
                         }
 
-                        if (net.minecraftforge.event.ForgeEventFactory.canEntitySpawn(entityliving, worldIn, j + 0.5f, (float) blockpos.getY(), k +0.5f, false) == net.minecraftforge.fml.common.eventhandler.Event.Result.DENY) continue;
+                        if (ForgeEventFactory.canEntitySpawn(entityliving, worldIn, j + 0.5f, (float) blockpos.getY(), k + 0.5f, false) == net.minecraftforge.fml.common.eventhandler.Event.Result.DENY) continue;
                         entityliving.setLocationAndAngles((float)j + 0.5F, blockpos.getY(), (float)k + 0.5F, randomIn.nextFloat() * 360.0F, 0.0F);
                         worldIn.spawnEntity(entityliving);
                         ientitylivingdata = entityliving.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(entityliving)), ientitylivingdata);
@@ -177,11 +178,7 @@ public class MazeChunkGenerator implements IChunkGenerator {
         for(int i = 1 ; i<=16;i++){
             for(int j=1;j<=16;j++){
                 if(maze[i][j]){
-                    chunkPrimer.setBlockState(i-1, 2, j-1, BlockLoader.MazeBlock.getDefaultState());
-                    chunkPrimer.setBlockState(i-1, 3, j-1, BlockLoader.MazeBlock.getDefaultState());
-                    chunkPrimer.setBlockState(i-1, 4, j-1, BlockLoader.MazeBlock.getDefaultState());
-                    chunkPrimer.setBlockState(i-1, 5, j-1, BlockLoader.MazeBlock.getDefaultState());
-                    chunkPrimer.setBlockState(i-1, 6, j-1, BlockLoader.MazeBlock.getDefaultState());
+                    BuildWall(i-1,j-1,chunkPrimer);
                 }
             }
         }
@@ -205,5 +202,13 @@ public class MazeChunkGenerator implements IChunkGenerator {
         chunkPrimer.setBlockState(8, 4, 15, Blocks.AIR.getDefaultState());
         chunkPrimer.setBlockState(8, 5, 15, Blocks.AIR.getDefaultState());
         chunkPrimer.setBlockState(8, 6, 15, Blocks.AIR.getDefaultState());
+    }
+
+    public static void BuildWall(int x,int z,ChunkPrimer chunk){
+        for(int y=2;y<=6;y++){
+            if(!(new Random().nextInt(20)==5)){
+                chunk.setBlockState(x,y,z, BlockLoader.MazeBlock.getDefaultState());
+            }
+        }
     }
 }
