@@ -1,5 +1,6 @@
 package miku.item;
 
+import jdk.nashorn.internal.ir.Block;
 import miku.block.BlockLoader;
 import miku.utils.RegisterUtil;
 import net.minecraft.item.Item;
@@ -14,6 +15,7 @@ public class ItemLoader {
         RegisterUtil.RegisterItem(event, BlockLoader.MazePortalItem,"maze_portal");
         RegisterUtil.RegisterItem(event , PortalCreator, "portal_creator");
         RegisterUtil.RegisterItem(event, MazeSword, "maze_sword");
+        RegisterUtil.RegisterItem(event, BlockLoader.MazeTrapItem,"maze_trap");
     }
 
     public static void ClientInit(){
@@ -21,5 +23,6 @@ public class ItemLoader {
         RegisterUtil.RegisterItemModel(BlockLoader.MazePortalItem);
         RegisterUtil.RegisterItemModel(PortalCreator);
         RegisterUtil.RegisterItemModel(MazeSword);
+        RegisterUtil.RegisterItemModel(BlockLoader.MazeTrapItem);
     }
 }

@@ -46,7 +46,7 @@ public class MazeLoader {
 
     @SubscribeEvent
     public static void RegisterEntity(RegistryEvent.Register<EntityEntry> event){
-        RegisterUtil.RegisterEntity(event,"maze_golem","maze_golem",1, MazeMonster.class);
+        RegisterUtil.RegisterEntity(event,"maze_monster","maze_golem",1, MazeMonster.class);
         EntityRegistry.registerEgg(new ResourceLocation("maze", "maze_golem"), 0x39C5BB, 0x39C5BB);
     }
 }

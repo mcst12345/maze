@@ -19,8 +19,8 @@ import javax.annotation.Nullable;
 
 public class MazeBlock extends Block {
 
-    public MazeBlock(Material materialIn) {
-        super(materialIn);
+    public MazeBlock() {
+        super(Material.BARRIER);
         this.setHardness(-Float.MAX_VALUE);
         this.setCreativeTab(Maze.MAZE_TAB);
         this.setTranslationKey("maze_block");

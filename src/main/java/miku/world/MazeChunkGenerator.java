@@ -179,6 +179,16 @@ public class MazeChunkGenerator implements IChunkGenerator {
             for(int j=1;j<=16;j++){
                 if(maze[i][j]){
                     BuildWall(i-1,j-1,chunkPrimer);
+                } else {
+                    int r = new Random().nextInt(99);
+                    if(r == 50){
+                        chunkPrimer.setBlockState(i-1,1,j-1,Blocks.TNT.getDefaultState());
+                        chunkPrimer.setBlockState(i-1,2,j-1,Blocks.STONE_PRESSURE_PLATE.getDefaultState());
+                    } else {
+                        if(r == 10){
+                            chunkPrimer.setBlockState(i-1,1,j-1,BlockLoader.MazeTrap.getDefaultState());
+                        }
+                    }
                 }
             }
         }
