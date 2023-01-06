@@ -48,6 +48,29 @@ public class MazeChunkGenerator implements IChunkGenerator {
         int i = x * 16;
         int j = z * 16;
         performWorldGenSpawning(this.world,  MazeWorld.MazeBiome, i + 8, j + 8, 16, 16, this.rand);
+        /*for(int X = x; x <= x+16; x++){
+            for(int Z = j; Z <= j+16; j++){
+                BlockPos pos = new BlockPos(X,2,Z);
+                if(world.getBlockState(pos)== Blocks.AIR.getDefaultState()){
+                    int r = new Random().nextInt(300);
+                    if(r == 150){
+                        world.setBlockState(pos,Blocks.CHEST.getDefaultState());
+                        TileEntityChest chest = (TileEntityChest) world.getTileEntity(pos);
+                        IInventory inventory = TileEntityHopper.getInventoryAtPosition(world, pos.getX(), pos.getY(), pos.getZ());
+                        if(inventory != null){
+                            inventory.setInventorySlotContents(0,new ItemStack(Items.GOLD_INGOT,new Random().nextInt(8)));
+                            inventory.setInventorySlotContents(1,new ItemStack(Items.DIAMOND,new Random().nextInt(3)));
+                            inventory.setInventorySlotContents(2,new ItemStack(Items.GOLDEN_APPLE,new Random().nextInt(2)));
+                            inventory.setInventorySlotContents(3,new ItemStack(Items.ARROW,new Random().nextInt(20)));
+                            inventory.setInventorySlotContents(4,new ItemStack(Item.getItemFromBlock(Blocks.STONEBRICK),new Random().nextInt(64)));
+                            if(new Random().nextInt(1000)==39){
+                                inventory.setInventorySlotContents(5,new ItemStack(Item.getByNameOrId("enchanted_golden_apple"),1));
+                            }
+                        }
+                    }
+                }
+            }
+        }*/
     }
 
     public static void performWorldGenSpawning(World worldIn, Biome biomeIn, int centerX, int centerZ, int diameterX, int diameterZ, Random randomIn)
