@@ -1,6 +1,5 @@
 package miku.block;
 
-import miku.entity.MazeMonster;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -31,10 +30,8 @@ public class MazeTrap extends Block {
     @Override
     public void onEntityWalk(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull Entity entityIn){
         if(entityIn.world.isRemote)return;
-        MazeMonster entity = new MazeMonster(worldIn);
-        entity.posX = pos.getX();
-        entity.posY = pos.getY();
-        entity.posZ = pos.getZ();
+        Entity entity =  ItemMonsterPlacer.spawnCreature(worldIn,new ResourceLocation("maze","maze_monster"),pos.getX()+0.5D,pos.getY()+1,pos.getZ()+0.5D);
+        assert entity != null;
         entityIn.world.spawnEntity(entity);
         worldIn.setBlockState(pos,BlockLoader.MazeBlock.getDefaultState());
     }
