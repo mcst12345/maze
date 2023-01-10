@@ -22,7 +22,7 @@ public class MazeBlock extends Block {
     public MazeBlock() {
         super(Material.BARRIER);
         this.setHardness(-Float.MAX_VALUE);
-        this.setCreativeTab(Maze.MAZE_TAB);
+        this.setCreativeTab(Maze.MAZE_BLOCK);
         this.setTranslationKey("maze_block");
     }
 

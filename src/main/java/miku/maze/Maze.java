@@ -1,5 +1,6 @@
 package miku.maze;
 
+import miku.block.BlockLoader;
 import miku.item.ItemLoader;
 import miku.maze.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
@@ -55,7 +56,7 @@ public class Maze {
 
     }
 
-    public static final CreativeTabs MAZE_TAB = new CreativeTabs("maze") {
+    public static final CreativeTabs MAZE_ITEM = new CreativeTabs("maze_item") {
         @Override
         @Nonnull
         public ItemStack createIcon() {
@@ -63,4 +64,11 @@ public class Maze {
         }
     };
 
+    public static final CreativeTabs MAZE_BLOCK = new CreativeTabs("maze_block") {
+        @Override
+        @Nonnull
+        public ItemStack createIcon() {
+            return new ItemStack(BlockLoader.MazeBlock);
+        }
+    };
 }

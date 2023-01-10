@@ -1,14 +1,15 @@
 package miku.block;
 
+import miku.entity.MazeMonster;
+import miku.maze.Maze;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
@@ -19,6 +20,8 @@ public class MazeTrap extends Block {
     public MazeTrap() {
         super(Material.AIR);
         this.setHardness(10);
+        this.setCreativeTab(Maze.MAZE_BLOCK);
+        this.setTranslationKey("maze_trap");
     }
 
     @Override
@@ -30,8 +33,11 @@ public class MazeTrap extends Block {
     @Override
     public void onEntityWalk(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull Entity entityIn){
         if(entityIn.world.isRemote)return;
-        Entity entity =  ItemMonsterPlacer.spawnCreature(worldIn,new ResourceLocation("maze","maze_monster"),pos.getX()+0.5D,pos.getY()+1,pos.getZ()+0.5D);
-        assert entity != null;
+        MazeMonster entity = new MazeMonster(worldIn);
+        entity.setLocationAndAngles(pos.getX(),pos.getY(),pos.getZ(), MathHelper.wrapDegrees(worldIn.rand.nextFloat() * 360.0F), 0.0F);
+        entity.rotationYawHead = entity.rotationYaw;
+        entity.renderYawOffset = entity.rotationYaw;
+        entity.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(entity)), null);
         entityIn.world.spawnEntity(entity);
         worldIn.setBlockState(pos,BlockLoader.MazeBlock.getDefaultState());
     }

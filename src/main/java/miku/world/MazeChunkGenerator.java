@@ -210,6 +210,7 @@ public class MazeChunkGenerator implements IChunkGenerator {
                     } else {
                         if(r == 10){
                             chunkPrimer.setBlockState(i-1,1,j-1,BlockLoader.MazeTrap.getDefaultState());
+                            System.out.println("Generate MazeTrap");
                         }
                     }
                 }

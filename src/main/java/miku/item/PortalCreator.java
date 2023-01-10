@@ -19,7 +19,7 @@ public class PortalCreator extends Item {
     public PortalCreator(){
         this.setMaxStackSize(1);
         this.canRepair=false;
-        this.setCreativeTab(Maze.MAZE_TAB);
+        this.setCreativeTab(Maze.MAZE_ITEM);
         this.setTranslationKey("portal_creator");
     }
 

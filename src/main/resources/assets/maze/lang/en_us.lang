@@ -1,10 +1,16 @@
 #Block
 tile.maze_block.name=Maze Block
 tile.maze_portal.name=Maze World Portal
+tile.maze_trap.name=Maze Trap
 #Item
 item.portal_creator.name=Portal Creator
 item.maze_sword.name=Maze Sword
+item.maze_trap.name=Maze Trap
 #Tab
 itemGroup.maze=Maze
 #Entity
-entity.maze_golem.name=Maze Monster
+entity.maze_monster.name=Maze Monster
+
+#ItemGroup
+itemGroup.MAZE_ITEM=Maze Items
+itemGroup.MAZE_BLOCK=Maze Blocks

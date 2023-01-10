@@ -3,6 +3,7 @@ package miku.utils;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
@@ -32,7 +33,7 @@ public class RegisterUtil {
         event.getRegistry().register(block.setRegistryName("maze:" + name));
     }
 
-    public static void RegisterEntity(RegistryEvent.Register<EntityEntry> event, String inside_name, String name, int network, Class c) {
+    public static void RegisterEntity(RegistryEvent.Register<EntityEntry> event, String inside_name, String name, int network, Class<? extends Entity> c) {
         event.getRegistry().register(EntityEntryBuilder.create()
                 .entity(c)
                 .id(new ResourceLocation("maze", inside_name), network)

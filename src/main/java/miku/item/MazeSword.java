@@ -2,6 +2,7 @@ package miku.item;
 
 import miku.entity.MazeMonster;
 import miku.lib.api.ProtectedEntity;
+import miku.maze.Maze;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,7 +13,7 @@ import javax.annotation.Nonnull;
 
 public class MazeSword extends Item {
     public MazeSword(){
-        this.setCreativeTab(CreativeTabs.COMBAT);
+        this.setCreativeTab(Maze.MAZE_ITEM);
         this.setTranslationKey("maze_sword");
     }
 

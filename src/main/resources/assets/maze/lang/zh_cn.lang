@@ -1,10 +1,16 @@
 #方块
 tile.maze_block.name=迷宫方块
 tile.maze_portal.name=迷宫世界传送门
+tile.maze_trap.name=迷宫陷阱
 #物品
 item.portal_creator.name=传送门创建器
 item.maze_sword.name=迷宫剑
+item.maze_trap.name=迷宫陷阱
 #创造物品栏
 itemGroup.maze=迷宫
 #实体
-entity.maze_golem.name=迷宫怪物
+entity.maze_monster.name=迷宫怪物
+
+#创造物品栏
+itemGroup.MAZE_ITEM=迷宫物品
+itemGroup.MAZE_BLOCK=迷宫方块
