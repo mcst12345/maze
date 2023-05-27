@@ -243,12 +243,12 @@ public class MazeChunkGenerator implements IChunkGenerator {
         for(int y=start;y<=l;y++){
             if(!(new Random().nextInt(20)==5)){
                 if(flag){
-                    if( y == i/2 || y == i/2+1) {
+                    if( y == i/2+1 || y == i/2+2) {
                         chunk.setBlockState(x, y, z, Blocks.SEA_LANTERN.getDefaultState());
                         continue;
                     }
                 } else {
-                    if(y == (i+1)/2 ) {
+                    if(y == (i+1)/2+1 ) {
                         chunk.setBlockState(x, y, z, Blocks.SEA_LANTERN.getDefaultState());
                         continue;
                     }
