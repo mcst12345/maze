@@ -3,8 +3,8 @@ package miku.maze.proxy;
 import miku.block.BlockLoader;
 import miku.entity.MazeMonster;
 import miku.item.ItemLoader;
+import miku.lib.util.Register;
 import miku.render.RenderMazeGolem;
-import miku.utils.RegisterUtil;
 import miku.world.MazeWorld;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -46,7 +46,7 @@ public class MazeLoader {
 
     @SubscribeEvent
     public static void RegisterEntity(RegistryEvent.Register<EntityEntry> event){
-        RegisterUtil.RegisterEntity(event,"maze_monster","maze_monster",1, MazeMonster.class);
+        Register.RegisterEntity(event,"maze","maze_monster","maze_monster",1, MazeMonster.class);
         EntityRegistry.registerEgg(new ResourceLocation("maze", "maze_monster"), 0x39C5BB, 0x39C5BB);
     }
 }

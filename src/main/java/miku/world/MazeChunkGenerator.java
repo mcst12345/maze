@@ -1,7 +1,7 @@
 package miku.world;
 
 import miku.block.BlockLoader;
-import miku.utils.Maze;
+import miku.utils.Maze1;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
@@ -35,7 +35,7 @@ public class MazeChunkGenerator implements IChunkGenerator {
     @Nonnull
     public Chunk generateChunk(int x, int z) {
         ChunkPrimer chunkPrimer = new ChunkPrimer();
-        setBlocksInChunk(chunkPrimer);
+        setBlocksInChunk(chunkPrimer,x,z);
 
         Chunk chunk = new Chunk(this.world, chunkPrimer, x, z);
         chunk.generateSkylightMap();
@@ -48,29 +48,7 @@ public class MazeChunkGenerator implements IChunkGenerator {
         int i = x * 16;
         int j = z * 16;
         performWorldGenSpawning(this.world,  MazeWorld.MazeBiome, i + 8, j + 8, 16, 16, this.rand);
-        /*for(int X = x; x <= x+16; x++){
-            for(int Z = j; Z <= j+16; j++){
-                BlockPos pos = new BlockPos(X,2,Z);
-                if(world.getBlockState(pos)== Blocks.AIR.getDefaultState()){
-                    int r = new Random().nextInt(300);
-                    if(r == 150){
-                        world.setBlockState(pos,Blocks.CHEST.getDefaultState());
-                        TileEntityChest chest = (TileEntityChest) world.getTileEntity(pos);
-                        IInventory inventory = TileEntityHopper.getInventoryAtPosition(world, pos.getX(), pos.getY(), pos.getZ());
-                        if(inventory != null){
-                            inventory.setInventorySlotContents(0,new ItemStack(Items.GOLD_INGOT,new Random().nextInt(8)));
-                            inventory.setInventorySlotContents(1,new ItemStack(Items.DIAMOND,new Random().nextInt(3)));
-                            inventory.setInventorySlotContents(2,new ItemStack(Items.GOLDEN_APPLE,new Random().nextInt(2)));
-                            inventory.setInventorySlotContents(3,new ItemStack(Items.ARROW,new Random().nextInt(20)));
-                            inventory.setInventorySlotContents(4,new ItemStack(Item.getItemFromBlock(Blocks.STONEBRICK),new Random().nextInt(64)));
-                            if(new Random().nextInt(1000)==39){
-                                inventory.setInventorySlotContents(5,new ItemStack(Item.getByNameOrId("enchanted_golden_apple"),1));
-                            }
-                        }
-                    }
-                }
-            }
-        }*/
+
     }
 
     public static void performWorldGenSpawning(World worldIn, Biome biomeIn, int centerX, int centerZ, int diameterX, int diameterZ, Random randomIn)
@@ -172,7 +150,7 @@ public class MazeChunkGenerator implements IChunkGenerator {
         return false;
     }
 
-    public void setBlocksInChunk(ChunkPrimer chunkPrimer){
+    public void setBlocksInChunk(ChunkPrimer chunkPrimer, int x , int z){
         for (int j = 0; j < 16; ++j)
         {
             for (int k = 0; k < 16; ++k)
@@ -194,14 +172,16 @@ public class MazeChunkGenerator implements IChunkGenerator {
                 chunkPrimer.setBlockState(j, 200, k, Blocks.BARRIER.getDefaultState());
             }
         }
-        Maze Maze = new Maze();
-        Maze.init();
-        Maze.makeMaze();
-        boolean[][] maze = Maze.maze;
+        Maze1 Maze1 = new Maze1();
+
+
+        Maze1.init();
+        Maze1.makeMaze();
+        boolean[][] maze = Maze1.maze;
         for(int i = 1 ; i<=16;i++){
             for(int j=1;j<=16;j++){
                 if(maze[i][j]){
-                    BuildWall(i-1,j-1,chunkPrimer);
+                    BuildWall(i-1,j-1,chunkPrimer,2,6);
                 } else {
                     int r = new Random().nextInt(99);
                     if(r == 50){
@@ -210,12 +190,31 @@ public class MazeChunkGenerator implements IChunkGenerator {
                     } else {
                         if(r == 10){
                             chunkPrimer.setBlockState(i-1,1,j-1,BlockLoader.MazeTrap.getDefaultState());
-                            System.out.println("Generate MazeTrap");
                         }
                     }
                 }
             }
         }
+
+        for (int j = 0; j < 16; ++j)
+        {
+            for (int k = 0; k < 16; ++k)
+            {
+                if(!(new Random().nextInt(50)==39))chunkPrimer.setBlockState(j, 21, k, BlockLoader.MazeBlock.getDefaultState());
+            }
+        }
+
+        Maze1.init();
+        Maze1.makeMaze();
+        maze = Maze1.maze;
+        for(int i = 1 ; i<=16;i++){
+            for(int j=1;j<=16;j++){
+                if(maze[i][j]){
+                    BuildWall(i-1,j-1,chunkPrimer,22,26);
+                }
+            }
+        }
+
         chunkPrimer.setBlockState(0, 2, 7, Blocks.AIR.getDefaultState());
         chunkPrimer.setBlockState(0, 3, 7, Blocks.AIR.getDefaultState());
         chunkPrimer.setBlockState(0, 4, 7, Blocks.AIR.getDefaultState());
@@ -238,8 +237,8 @@ public class MazeChunkGenerator implements IChunkGenerator {
         chunkPrimer.setBlockState(8, 6, 15, Blocks.AIR.getDefaultState());
     }
 
-    public static void BuildWall(int x,int z,ChunkPrimer chunk){
-        for(int y=2;y<=6;y++){
+    public static void BuildWall(int x,int z,ChunkPrimer chunk , int start, int l){
+        for(int y=start;y<=l;y++){
             if(!(new Random().nextInt(20)==5)){
                 chunk.setBlockState(x,y,z, BlockLoader.MazeBlock.getDefaultState());
             }

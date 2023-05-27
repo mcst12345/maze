@@ -1,6 +1,6 @@
 package miku.block;
 
-import miku.utils.RegisterUtil;
+import miku.lib.util.Register;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.event.RegistryEvent;
@@ -16,8 +16,8 @@ public class BlockLoader {
     public static final ItemBlock MazePortalItem = new ItemBlock(MazePortal);
 
     public static void Init(RegistryEvent.Register<Block> event){
-        RegisterUtil.RegisterBlock(event,MazeBlock,"maze_block");
-        RegisterUtil.RegisterBlock(event,MazePortal,"maze_portal");
-        RegisterUtil.RegisterBlock(event,MazeTrap,"maze_trap");
+        Register.RegisterBlock(event,MazeBlock,"maze","maze_block");
+        Register.RegisterBlock(event,MazePortal,"maze","maze_portal");
+        Register.RegisterBlock(event,MazeTrap,"maze","maze_trap");
     }
 }
