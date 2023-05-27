@@ -22,7 +22,7 @@ public class Maze {
 
     public static final String MOD_ID = "maze";
     public static final String MOD_NAME = "Maze1";
-    public static final String VERSION = "1.0";
+    public static final String VERSION = "1.3";
 
     @SidedProxy(
             clientSide = "miku.maze.proxy.ClientProxy",
