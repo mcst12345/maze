@@ -238,8 +238,20 @@ public class MazeChunkGenerator implements IChunkGenerator {
     }
 
     public static void BuildWall(int x,int z,ChunkPrimer chunk , int start, int l){
+        boolean flag = l%2 == 0;
         for(int y=start;y<=l;y++){
             if(!(new Random().nextInt(20)==5)){
+                if(flag){
+                    if( y == l/2 || y == l/2+1) {
+                        chunk.setBlockState(x, y, z, Blocks.SEA_LANTERN.getDefaultState());
+                        continue;
+                    }
+                } else {
+                    if(y == (l+1)/2 ) {
+                        chunk.setBlockState(x, y, z, Blocks.SEA_LANTERN.getDefaultState());
+                        continue;
+                    }
+                }
                 chunk.setBlockState(x,y,z, BlockLoader.MazeBlock.getDefaultState());
             }
         }

@@ -12,5 +12,5 @@ itemGroup.maze=Maze
 entity.maze_monster.name=Maze Monster
 
 #ItemGroup
-itemGroup.MAZE_ITEM=Maze Items
-itemGroup.MAZE_BLOCK=Maze Blocks
+itemGroup.maze_item=Maze Items
+itemGroup.maze_block=Maze Blocks

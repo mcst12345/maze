@@ -12,5 +12,5 @@ itemGroup.maze=迷宫
 entity.maze_monster.name=迷宫怪物
 
 #创造物品栏
-itemGroup.MAZE_ITEM=迷宫物品
-itemGroup.MAZE_BLOCK=迷宫方块
+itemGroup.maze_item=迷宫物品
+itemGroup.maze_block=迷宫方块
