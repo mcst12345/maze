@@ -1,22 +1,17 @@
 package miku.maze.proxy;
 
 import miku.block.BlockLoader;
-import miku.entity.MazeMonster;
+import miku.entity.EntityLoader;
 import miku.item.ItemLoader;
-import miku.lib.util.Register;
-import miku.render.RenderMazeGolem;
 import miku.world.MazeWorld;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -25,8 +20,7 @@ public class MazeLoader {
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public static void registerModel(ModelRegistryEvent event){
-        ItemLoader.ClientInit();
-        RenderingRegistry.registerEntityRenderingHandler(MazeMonster.class, RenderMazeGolem::new);
+        EntityLoader.InitRender();
     }
 
     @SubscribeEvent
@@ -46,7 +40,6 @@ public class MazeLoader {
 
     @SubscribeEvent
     public static void RegisterEntity(RegistryEvent.Register<EntityEntry> event){
-        Register.RegisterEntity(event,"maze","maze_monster","maze_monster",1, MazeMonster.class);
-        EntityRegistry.registerEgg(new ResourceLocation("maze", "maze_monster"), 0x39C5BB, 0x39C5BB);
+        EntityLoader.Init(event);
     }
 }

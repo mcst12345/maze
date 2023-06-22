@@ -5,6 +5,7 @@ import miku.item.ItemLoader;
 import miku.maze.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -19,6 +20,7 @@ import javax.annotation.Nonnull;
         version = Maze.VERSION
 )
 public class Maze {
+    public static final ResourceLocation TEXTURE = new ResourceLocation("maze", "textures/entities/maze_monster.png");
 
     public static final String MOD_ID = "maze";
     public static final String MOD_NAME = "Maze";
