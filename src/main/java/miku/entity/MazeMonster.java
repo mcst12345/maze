@@ -1,6 +1,7 @@
 package miku.entity;
 
 import miku.lib.api.ProtectedEntity;
+import miku.lib.api.iEntity;
 import miku.lib.api.iEntityLivingBase;
 import miku.lib.util.EntityUtil;
 import net.minecraft.entity.Entity;
@@ -8,7 +9,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -17,12 +18,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class MazeMonster extends MazeEntityBase implements ProtectedEntity {
-    @Override
-    protected boolean canDespawn()
-    {
-        return false;
-    }
+public class MazeMonster extends EntityGolem implements ProtectedEntity {
     protected int health = 300;
 
     public MazeMonster(World worldIn) {

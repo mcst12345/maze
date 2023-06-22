@@ -9,8 +9,8 @@ import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
 
-public class RenderMazeMonster extends RenderLiving<MazeMonster> {
-    public RenderMazeMonster(RenderManager rendermanager) {
+public class RenderMazeGolem extends RenderLiving<MazeMonster> {
+    public RenderMazeGolem(RenderManager rendermanager) {
         super(rendermanager, new ModelZombie(), 0.3f);
     }
 

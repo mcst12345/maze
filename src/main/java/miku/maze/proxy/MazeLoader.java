@@ -20,7 +20,6 @@ public class MazeLoader {
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public static void registerModel(ModelRegistryEvent event){
-        ItemLoader.ClientInit();
         EntityLoader.InitRender();
     }
 

@@ -9,6 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
@@ -37,13 +38,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class MazeShulker extends MazeEntityBase implements IMob {
-
-    @Override
-    protected boolean canDespawn()
-    {
-        return false;
-    }
+public class MazeShulker extends EntityGolem implements IMob {
     private static final UUID COVERED_ARMOR_BONUS_ID = UUID.fromString("7E0292F2-9434-48D5-A29F-9583AF7DF27F");
     private static final AttributeModifier COVERED_ARMOR_BONUS_MODIFIER = (new AttributeModifier(COVERED_ARMOR_BONUS_ID, "Covered armor bonus", 20.0D, 0)).setSaved(false);
     protected static final DataParameter<EnumFacing> ATTACHED_FACE = EntityDataManager.createKey(MazeShulker.class, DataSerializers.FACING);
