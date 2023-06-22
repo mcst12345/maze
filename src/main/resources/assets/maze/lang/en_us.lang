@@ -2,10 +2,12 @@
 tile.maze_block.name=Maze Block
 tile.maze_portal.name=Maze World Portal
 tile.maze_trap.name=Maze Trap
+tile.maze_shulker_spawner.name=Maze Shulker Spawner
 #Item
 item.portal_creator.name=Portal Creator
 item.maze_sword.name=Maze Sword
 item.maze_trap.name=Maze Trap
+item.maze_shulker_spawner.name=Maze Shulker Spawner
 #Tab
 itemGroup.maze=Maze
 #Entity

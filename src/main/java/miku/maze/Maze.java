@@ -21,8 +21,8 @@ import javax.annotation.Nonnull;
 public class Maze {
 
     public static final String MOD_ID = "maze";
-    public static final String MOD_NAME = "Maze1";
-    public static final String VERSION = "1.3";
+    public static final String MOD_NAME = "Maze";
+    public static final String VERSION = "1.5";
 
     @SidedProxy(
             clientSide = "miku.maze.proxy.ClientProxy",
@@ -40,17 +40,11 @@ public class Maze {
         proxy.preInit(event);
     }
 
-    /**
-     * This is the second initialization event. Register custom recipes
-     */
     @Mod.EventHandler
     public void Init(FMLInitializationEvent event) {
         proxy.init(event);
     }
 
-    /**
-     * This is the final initialization event. Register actions from other mods here
-     */
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
 

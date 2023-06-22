@@ -2,10 +2,12 @@
 tile.maze_block.name=迷宫方块
 tile.maze_portal.name=迷宫世界传送门
 tile.maze_trap.name=迷宫陷阱
+tile.maze_shulker_spawner.name=迷宫潜影贝生成器
 #物品
 item.portal_creator.name=传送门创建器
 item.maze_sword.name=迷宫剑
 item.maze_trap.name=迷宫陷阱
+item.maze_shulker_spawner.name=迷宫潜影贝生成器
 #创造物品栏
 itemGroup.maze=迷宫
 #实体

@@ -19,7 +19,7 @@ import java.util.Random;
 public class MazeTrap extends Block {
     public MazeTrap() {
         super(Material.AIR);
-        this.setHardness(10);
+        this.setHardness(10.0f);
         this.setCreativeTab(Maze.MAZE_BLOCK);
         this.setTranslationKey("maze_trap");
     }
