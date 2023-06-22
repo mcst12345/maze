@@ -9,7 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.monster.EntityGolem;
+import net.minecraft.entity.monster.EntityShulker;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
@@ -28,7 +28,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -38,7 +37,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class MazeShulker extends EntityGolem implements IMob {
+public class MazeShulker extends EntityShulker implements IMob {
     private static final UUID COVERED_ARMOR_BONUS_ID = UUID.fromString("7E0292F2-9434-48D5-A29F-9583AF7DF27F");
     private static final AttributeModifier COVERED_ARMOR_BONUS_MODIFIER = (new AttributeModifier(COVERED_ARMOR_BONUS_ID, "Covered armor bonus", 20.0D, 0)).setSaved(false);
     protected static final DataParameter<EnumFacing> ATTACHED_FACE = EntityDataManager.createKey(MazeShulker.class, DataSerializers.FACING);
@@ -85,20 +84,11 @@ public class MazeShulker extends EntityGolem implements IMob {
         this.targetTasks.addTask(3, new MazeShulker.AIDefenseAttack(this));
     }
 
-    protected boolean canTriggerWalking()
-    {
-        return false;
-    }
 
     @Nonnull
     public SoundCategory getSoundCategory()
     {
         return SoundCategory.HOSTILE;
-    }
-
-    protected SoundEvent getAmbientSound()
-    {
-        return SoundEvents.ENTITY_SHULKER_AMBIENT;
     }
 
     public void playLivingSound()
@@ -107,11 +97,6 @@ public class MazeShulker extends EntityGolem implements IMob {
         {
             super.playLivingSound();
         }
-    }
-
-    protected SoundEvent getDeathSound()
-    {
-        return SoundEvents.ENTITY_SHULKER_DEATH;
     }
 
     protected SoundEvent getHurtSound(@Nonnull DamageSource damageSourceIn)
@@ -138,11 +123,6 @@ public class MazeShulker extends EntityGolem implements IMob {
     protected EntityBodyHelper createBodyHelper()
     {
         return new BodyHelper(this);
-    }
-
-    public static void registerFixesShulker(DataFixer fixer)
-    {
-        EntityLiving.registerFixesMob(fixer, MazeShulker.class);
     }
 
     public void readEntityFromNBT(@Nonnull NBTTagCompound compound)
@@ -524,12 +504,8 @@ public class MazeShulker extends EntityGolem implements IMob {
         return this.getPeekTick() == 0;
     }
 
-    @Nullable
-    public AxisAlignedBB getCollisionBoundingBox()
-    {
-        return this.isEntityAlive() ? this.getEntityBoundingBox() : null;
-    }
 
+    @Nonnull
     public EnumFacing getAttachmentFacing()
     {
         return this.dataManager.get(ATTACHED_FACE);
@@ -584,25 +560,12 @@ public class MazeShulker extends EntityGolem implements IMob {
     }
 
     @SideOnly(Side.CLIENT)
+    @Nonnull
     public BlockPos getOldAttachPos()
     {
         return this.currentAttachmentPosition;
     }
 
-    public float getEyeHeight()
-    {
-        return 0.5F;
-    }
-
-    public int getVerticalFaceSpeed()
-    {
-        return 180;
-    }
-
-    public int getHorizontalFaceSpeed()
-    {
-        return 180;
-    }
 
     public void applyEntityCollision(@Nonnull Entity entityIn)
     {
@@ -617,10 +580,12 @@ public class MazeShulker extends EntityGolem implements IMob {
     @Nullable
     protected ResourceLocation getLootTable()
     {
-        return LootTableList.ENTITIES_SHULKER;
+        return null;
+        //return LootTableList.ENTITIES_SHULKER;
     }
 
     @SideOnly(Side.CLIENT)
+    @Nonnull
     public EnumDyeColor getColor()
     {
         return EnumDyeColor.byMetadata(this.dataManager.get(COLOR));

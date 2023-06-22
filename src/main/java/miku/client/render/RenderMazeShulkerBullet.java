@@ -1,7 +1,6 @@
 package miku.client.render;
 
 import miku.entity.projectile.MazeShulkerBullet;
-import miku.maze.Maze;
 import net.minecraft.client.model.ModelShulkerBullet;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
@@ -12,6 +11,7 @@ import net.minecraft.util.math.MathHelper;
 import javax.annotation.Nonnull;
 
 public class RenderMazeShulkerBullet extends Render<MazeShulkerBullet> {
+    protected final ResourceLocation texture = new ResourceLocation("maze", "textures/entities/maze_monster.png");
     private final ModelShulkerBullet model = new ModelShulkerBullet();
 
     public RenderMazeShulkerBullet(RenderManager manager)
@@ -60,6 +60,6 @@ public class RenderMazeShulkerBullet extends Render<MazeShulkerBullet> {
 
     protected ResourceLocation getEntityTexture(@Nonnull MazeShulkerBullet entity)
     {
-        return Maze.TEXTURE;
+        return texture;
     }
 }
