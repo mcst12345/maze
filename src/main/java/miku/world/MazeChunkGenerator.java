@@ -181,7 +181,7 @@ public class MazeChunkGenerator implements IChunkGenerator {
         for(int i = 1 ; i<=16;i++){
             for(int j=1;j<=16;j++){
                 if(maze[i][j]){
-                    BuildWall(i-1,j-1,chunkPrimer,2,6);
+                    BuildWall(i-1,j-1,chunkPrimer,2);
                 } else {
                     int r = new Random().nextInt(99);
                     if(r == 50){
@@ -210,7 +210,7 @@ public class MazeChunkGenerator implements IChunkGenerator {
         for(int i = 1 ; i<=16;i++){
             for(int j=1;j<=16;j++){
                 if(maze[i][j]){
-                    BuildWall(i-1,j-1,chunkPrimer,22,26);
+                    BuildWall(i-1,j-1,chunkPrimer,22);
                 }
             }
         }
@@ -237,23 +237,13 @@ public class MazeChunkGenerator implements IChunkGenerator {
         chunkPrimer.setBlockState(8, 6, 15, Blocks.AIR.getDefaultState());
     }
 
-    public static void BuildWall(int x,int z,ChunkPrimer chunk , int start, int l){
-        int i = (l-start+1);
-        boolean flag = i%2 == 0;
-        for(int y=start;y<=l;y++){
+    public static void BuildWall(int x,int z,ChunkPrimer chunk , int start){
+        for(int y=start;y<start+5;y++){
             if(!(new Random().nextInt(20)==5)){
-                if(flag){
-                    if( y == i/2+1 || y == i/2+2) {
-                        chunk.setBlockState(x, y, z, Blocks.SEA_LANTERN.getDefaultState());
-                        continue;
-                    }
-                } else {
-                    if(y == (i+1)/2+1 ) {
-                        chunk.setBlockState(x, y, z, Blocks.SEA_LANTERN.getDefaultState());
-                        continue;
-                    }
+                if(y==start+2){
+                    chunk.setBlockState(x, y, z, Blocks.SEA_LANTERN.getDefaultState());
                 }
-                chunk.setBlockState(x,y,z, BlockLoader.MazeBlock.getDefaultState());
+                else chunk.setBlockState(x,y,z, BlockLoader.MazeBlock.getDefaultState());
             }
         }
     }
