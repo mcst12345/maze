@@ -16,12 +16,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityLoader {
     public static void Init(RegistryEvent.Register<EntityEntry> event){
-        //Register.RegisterEntity(event,"maze","maze_monster","Maze Monster",1, MazeMonster.class);
-        //Register.RegisterEntity(event,"maze","maze_shulker","Maze Shulker",1, MazeShulker.class);
-        //Register.RegisterEntity(event,"maze","maze_shulker_bullet","Maze Shulker Bullet",1, MazeShulkerBullet.class);
-        EntityRegistry.registerModEntity(new ResourceLocation("maze","maze_monster"), MazeMonster.class,"Maze Monster",0, Maze.INSTANCE,80,3,true);
-        EntityRegistry.registerModEntity(new ResourceLocation("maze","maze_shulker"), MazeShulker.class,"Maze Shulker",1, Maze.INSTANCE,80,3,true);
-        EntityRegistry.registerModEntity(new ResourceLocation("maze","maze_shulker_bullet"), MazeShulkerBullet.class,"Maze Shulker Bullet",2, Maze.INSTANCE,80,3,true);
+        int id = 0;
+        Register.RegisterEntity("maze","maze_monster", MazeMonster.class,"Maze Monster",id++,Maze.INSTANCE);
+        Register.RegisterEntity("maze","maze_shulker", MazeShulker.class,"Maze Shulker",id++,Maze.INSTANCE);
+        Register.RegisterEntity("maze","maze_shulker_bullet", MazeShulkerBullet.class,"Maze Shulker Bullet",id++,Maze.INSTANCE);
     }
 
     @SideOnly(Side.CLIENT)
