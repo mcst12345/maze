@@ -1,6 +1,7 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube_top",
   "textures": {
-    "all": "maze:blocks/maze_shulker_spawner"
+    "top": "maze:blocks/maze_shulker_spawner",
+    "side": "maze:blocks/maze_trap"
   }
 }
