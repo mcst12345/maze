@@ -34,7 +34,7 @@ public class MazeShulkerSpawner extends Block {
     public void onEntityWalk(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull Entity entityIn){
         if(entityIn.world.isRemote)return;
         MazeShulker entity = new MazeShulker(worldIn);
-        entity.setLocationAndAngles(pos.getX(),pos.getY(),pos.getZ(), MathHelper.wrapDegrees(worldIn.rand.nextFloat() * 360.0F), 0.0F);
+        entity.setLocationAndAngles(pos.getX(),pos.getY()+1,pos.getZ(), MathHelper.wrapDegrees(worldIn.rand.nextFloat() * 360.0F), 0.0F);
         entity.rotationYawHead = entity.rotationYaw;
         entity.renderYawOffset = entity.rotationYaw;
         entity.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(entity)), null);
