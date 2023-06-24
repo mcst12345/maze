@@ -169,7 +169,7 @@ public class MazeChunkGenerator implements IChunkGenerator {
         {
             for (int k = 0; k < 16; ++k)
             {
-                chunkPrimer.setBlockState(j, 200, k, Blocks.BARRIER.getDefaultState());
+                chunkPrimer.setBlockState(j, 256, k, Blocks.BARRIER.getDefaultState());
             }
         }
         Maze1 Maze1 = new Maze1();
@@ -189,7 +189,10 @@ public class MazeChunkGenerator implements IChunkGenerator {
                         chunkPrimer.setBlockState(i-1,2,j-1,Blocks.STONE_PRESSURE_PLATE.getDefaultState());
                     } else {
                         if(r == 10){
-                            chunkPrimer.setBlockState(i-1,1,j-1,BlockLoader.MazeTrap.getDefaultState());
+                            if(new Random(i+j).nextInt(50)==39){
+                                chunkPrimer.setBlockState(i-1,1,j-1,BlockLoader.MazeShulkerSpawner.getDefaultState());
+                            }
+                            else chunkPrimer.setBlockState(i-1,1,j-1,BlockLoader.MazeTrap.getDefaultState());
                         }
                     }
                 }
