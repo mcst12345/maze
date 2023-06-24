@@ -6,11 +6,9 @@ import miku.client.render.RenderMazeShulkerBullet;
 import miku.entity.projectile.MazeShulkerBullet;
 import miku.lib.util.Register;
 import miku.maze.Maze;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

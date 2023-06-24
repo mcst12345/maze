@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 
 public class RenderMazeShulker extends RenderLiving<MazeShulker> {
-    protected final ResourceLocation texture = new ResourceLocation("maze", "textures/entities/maze_monster.png");
+    protected final ResourceLocation texture = new ResourceLocation("maze", "textures/entities/maze_shulker.png");
     public RenderMazeShulker(RenderManager p_i47194_1_)
     {
         super(p_i47194_1_, new ModelShulker(), 0.0F);
