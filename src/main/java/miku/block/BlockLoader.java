@@ -1,6 +1,6 @@
 package miku.block;
 
-import miku.lib.util.Register;
+import miku.lib.common.util.Register;
 import net.minecraft.block.Block;
 import net.minecraftforge.event.RegistryEvent;
 
