@@ -4,7 +4,7 @@ import miku.client.render.RenderMazeMonster;
 import miku.client.render.RenderMazeShulker;
 import miku.client.render.RenderMazeShulkerBullet;
 import miku.entity.projectile.MazeShulkerBullet;
-import miku.lib.util.Register;
+import miku.lib.common.util.Register;
 import miku.maze.Maze;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
