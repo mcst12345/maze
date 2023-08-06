@@ -5,7 +5,6 @@ import miku.item.ItemLoader;
 import miku.maze.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -17,7 +16,8 @@ import javax.annotation.Nonnull;
 @Mod(
         modid = Maze.MOD_ID,
         name = Maze.MOD_NAME,
-        version = Maze.VERSION
+        version = Maze.VERSION,
+        dependencies = "required-after:mikulib@[1.11,)"
 )
 public class Maze {
 

@@ -1,9 +1,8 @@
 package miku.entity;
 
-import miku.lib.api.ProtectedEntity;
-import miku.lib.api.iEntity;
-import miku.lib.api.iEntityLivingBase;
-import miku.lib.util.EntityUtil;
+import miku.lib.common.api.ProtectedEntity;
+import miku.lib.common.api.iEntityLivingBase;
+import miku.lib.common.util.EntityUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;

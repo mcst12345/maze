@@ -1,7 +1,7 @@
 package miku.item;
 
 import miku.block.BlockLoader;
-import miku.lib.util.Register;
+import miku.lib.common.util.Register;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.event.RegistryEvent;

@@ -1,7 +1,6 @@
 package miku.entity.boss;
 
-import miku.lib.api.ProtectedEntity;
-import net.minecraft.entity.Entity;
+import miku.lib.common.api.ProtectedEntity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;

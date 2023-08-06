@@ -107,32 +107,28 @@ public class MazePortal extends BlockPortal {
     @Override
     public void onEntityCollision(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull Entity entity) {
         if (world.isRemote) return;
-        MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+        if(entity.timeUntilPortal>0)entity.timeUntilPortal = entity.getPortalCooldown();
+        else {
+            MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
 
-        int transferDimension = 123454321;
+            int transferDimension = 123454321;
 
-        if (!entity.isRiding() && !entity.isBeingRidden() && !entity.isDead) {
-            if (entity.timeUntilPortal > 0) {
-                entity.timeUntilPortal = entity.getPortalCooldown();
-            } else {
+            if (!entity.isRiding() && !entity.isBeingRidden() && !entity.isDead) {
                 if (!(entity.dimension == 123454321)) {
                     LastWorld = entity.dimension;
                     entity.changeDimension(transferDimension, new MazeWorldTeleporter(server.getWorld(transferDimension)));
-                    entity.timeUntilPortal = 10;
                 } else {
-                    entity.timeUntilPortal = 10;
                     entity.changeDimension(LastWorld, new MazeWorldTeleporter(server.getWorld(LastWorld)));
                 }
             }
-        }
-        BlockPos pos1 = new BlockPos(entity.posX,2,entity.posZ);
-        while (true){
-            if(entity.world.isAirBlock(pos1)) {
-                entity.setPosition(pos1.getX(), 2, pos1.getZ());
-                break;
-            }
-            else {
-                pos1 = new BlockPos(pos1.getX()+1,2, pos1.getZ());
+            BlockPos pos1 = new BlockPos(entity.posX, 2, entity.posZ);
+            while (true) {
+                if (entity.world.isAirBlock(pos1)) {
+                    entity.setPosition(pos1.getX(), 2, pos1.getZ());
+                    break;
+                } else {
+                    pos1 = new BlockPos(pos1.getX() + 1, 2, pos1.getZ());
+                }
             }
         }
     }
